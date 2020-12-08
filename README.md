@@ -1,7 +1,7 @@
 ![Group 2](https://user-images.githubusercontent.com/48340625/101472657-6f89e200-397b-11eb-91bd-ec414c5bb664.png)
 
 # Add Stunning Animation in NextJS using Framer Motion
-## Read the article in [Here](https://www.linkedin.com/pulse/animation-transition-page-nextjs-ariq-jusuf/) with your browser to see the result.
+## Read the article in [Here](https://www.linkedin.com/pulse/animation-transition-page-nextjs-ariq-jusuf/) for more details.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
