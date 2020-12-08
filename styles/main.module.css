@@ -1,0 +1,48 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 280px;
+  height: 280px;
+}
+
+.item {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.item img {
+  width: 80%;
+  height: 80%;
+}
+
+.item:nth-child(3) {
+  padding-left: 6%;
+}
+
+.outline {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border: 10px solid white;
+  border-radius: 50%;
+}

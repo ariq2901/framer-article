@@ -1,65 +1,80 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { useState } from "react";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import styles from '../styles/main.module.css';
 
-export default function Home() {
+
+export default function App() {
+  const [selected, setSelected] = useState(weapons[0]);
+
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+    <AnimateSharedLayout>
+      <ul className={styles.wrapper}>
+        {weapons.map((weapon) => (
+          <Item
+            key={weapon.color}
+            color={weapon.color}
+            image={weapon.image}
+            isSelected={selected === weapon.color}
+            onClick={() => setSelected(weapon.color)}
+          />
+        ))}
+      </ul>
+    </AnimateSharedLayout>
+  );
 }
+
+
+function Item({ color, isSelected, image, onClick }) {
+  return (
+    <motion.li
+      className={styles.item}
+      whileTap={{
+        borderRadius: "20%",
+        transition: { delay: 0.05, duration: 0.3 }
+      }}
+      whileHover={{ scale: 1.1 }}
+      onClick={onClick}
+      style={{ backgroundColor: color }}
+    >
+      <img src={image} alt={color} />
+      {isSelected && (
+        <motion.div
+          layoutId={styles.outline}
+          className={styles.outline}
+          initial={false}
+          animate={{ borderColor: color }}
+          transition={spring}
+        />
+      )}
+    </motion.li>
+  );
+}
+
+
+const weapons= [
+  {
+    image: "https://i.ibb.co/L0hKRZq/red-weapon.png",
+    color: "#ff0055"
+  },
+  {
+    image: "https://i.ibb.co/KwMkhWg/green-weapon.png",
+    color: "#22cc88"
+  },
+  {
+    image: "https://i.ibb.co/WnNYmrG/blue-weapon.png",
+    color: "#0099ff"
+  },
+  {
+    image: "https://i.ibb.co/HB9B3FJ/yellow-weapon.png",
+    color: "#ffaa00"
+  }
+];
+
+
+const spring = {
+  type: "spring",
+  stiffness: 500,
+  damping: 30
+
+};
